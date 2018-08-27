@@ -1,0 +1,46 @@
+#
+#server:
+#  port: 8080
+#user-service:
+#  ribbon:
+#    listOfServers: user-service:8081
+#
+#todo-service:
+#  ribbon:
+#    listOfServers: todo-service:8082
+#
+#zuul:
+#  sensitiveHeaders:
+#  routes:
+#    reister-service:
+#      path: /users
+#      serviceId: user-service
+#      strip-prefix: false
+#    todo-service:
+#      path: /todos
+#      serviceId: todo-service
+#      strip-prefix: false
+##  prefix: /api
+#
+#private:
+#    password: zhangtian
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        cloud:
+#          netflix: TRACE
+
+spring:
+  application:
+    name: zuul
+  cloud:
+    config:
+      fail-fast: true
+      uri: http://config-server:8099/
+
+server:
+    port: 8080
+
+private:
+  password: zhangtian

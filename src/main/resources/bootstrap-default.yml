@@ -1,0 +1,7 @@
+spring:
+  config:
+    name: ${spring.application.name}
+    location: ../config/application.yml,../config/application-default.yml,../config/
+  cloud:
+    config:
+      enabled: true

@@ -1,57 +1,65 @@
-server:
-  port: 8080
-  context-path: /api
-
-ribbon:
-   eureka:
-     enabled: false
-
+#server:
+#  port: 8080
+#  context-path: /api
+#
+#ribbon:
+#   eureka:
+#     enabled: false
+#
 #user-service:
 #   ribbon:
-#      listOfServers: localhost:8081,localhost:8001
-
-spring:
-   application:
-      name: gateway
-   cloud:
-      consul:
-        host: consul
-        port: 8500
-        discovery:
-          health-check-path: /api/health
-          instanceId: ${spring.application.name}:${random.int}
-
-
-
-zuul:
-  routes:
-     users:
-       path: /users/**
-       sensitiveHeaders:
-#       url: http://127.0.0.1:8081
-       serviceId: user-service
-       stripPrefix: false
-     login:
-       path: /login/**
-       sensitiveHeaders:
-#       url: http://127.0.0.1:8081
-       serviceId: user-service
-       stripPrefix: false
-     validate:
-        path: /login/**
-        sensitiveHeaders:
-        #url: http://127.0.0.1:8081
-        serviceId: user-service
-        stripPrefix: false
-     todo-service:
-       path: /todos/**
-       sensitiveHeaders:
-       url: http://127.0.0.1:8082
-       stripPrefix: false
-
-logging:
-  level:
-    org:
-      springframework:
-        cloud:
-          netflix: TRACE
+#      listOfServers: user-service:8081
+#todo-service:
+#   ribbon:
+#      listOfServers: todo-service:8082
+#
+##spring:
+##   application:
+##      name: gateway
+##   cloud:
+##      consul:
+##        host: consul
+##        port: 8500
+##        discovery:
+##          health-check-path: /api/health
+##          instanceId: ${spring.application.name}:${random.int}
+#
+#
+#
+#zuul:
+#  routes:
+#     users:
+#       path: /users/**
+#       sensitiveHeaders:
+##       url: http://127.0.0.1:8081
+#       serviceId: user-service
+#       stripPrefix: false
+#     login:
+#       path: /login/**
+#       sensitiveHeaders:
+##       url: http://127.0.0.1:8081
+#       serviceId: user-service
+#       stripPrefix: false
+#     validate:
+#        path: /login/**
+#        sensitiveHeaders:
+#        #url: http://127.0.0.1:8081
+#        serviceId: user-service
+#        stripPrefix: false
+#     todo-service:
+#       path: /todos/**
+#       sensitiveHeaders:
+##       url: http://127.0.0.1:8082
+#       serviceId: todo-service
+#       stripPrefix: false
+#
+#private:
+#    password: zhangtian
+#
+#logging:
+#  level:
+#    org:
+#      springframework:
+#        security: DEBUG
+#        cloud:
+#          netflix: DEBUG

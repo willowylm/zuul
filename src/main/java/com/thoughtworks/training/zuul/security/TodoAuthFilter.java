@@ -32,7 +32,6 @@ public class TodoAuthFilter extends OncePerRequestFilter {
 
     @Value("${private.password}")
     private String privatePassword;
-    private User user;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -45,8 +44,11 @@ public class TodoAuthFilter extends OncePerRequestFilter {
                     .parseClaimsJws(token)
                     .getBody();
 
-
-                int id = (int) body.get("id");
+            int id = (int) body.get("id");
+            String name = (String) body.get("name");
+            User user = new User();
+            user.setId(id);
+            user.setName(name);
                 SecurityContextHolder.getContext().setAuthentication(
                         new UsernamePasswordAuthenticationToken(id,
                                 null,
